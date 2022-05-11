@@ -6,6 +6,7 @@ class User
     protected $signedIn;
     protected $expireDateCreditCard;
     protected $sconto;
+    protected $allowToBuy;
 
     public function __construct($name, $email, $signedIn, $expireDateCreditCard)
     {
@@ -14,6 +15,7 @@ class User
         $this->signedIn = $signedIn;
         $this->expireDateCreditCard = $expireDateCreditCard;
         $this->sconto = $this->setSconto();
+        $this->allowToBuy = $this->setAllow();
     }
     //setter
     public function setName($_name){
@@ -30,9 +32,16 @@ class User
     }
     public function setSconto(){
         if($this->signedIn == true){
-            return $this->sconto = '30%';
+            return $this->sconto = '20%';
         } else{
             return $this->sconto = '0';
+        }
+    }
+    public function setAllow(){
+        if(date("Y/m/d") <= $this->expireDateCreditCard){
+            return $this->allowToBuy = 'la tua carta non è scaduta, puoi comprare.';
+        } else{
+            return $this->allowToBuy = 'la tua carta è scaduta, non accettiamo contanti.';
         }
     }
     //getter
@@ -50,6 +59,9 @@ class User
     }
     public function getSconto(){
         return $this->sconto;
+    }
+    public function getAllow(){
+        return $this->allowToBuy;
     }
 }
 ?>
