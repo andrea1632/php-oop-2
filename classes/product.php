@@ -1,10 +1,8 @@
 <?php
-
+require_once __DIR__ . '/traits/itemtrait.php';
 class Product
 {
-    protected $name;
-    protected $description;
-    protected $price;
+
 
     public function __construct($name, $description, $price)
     {

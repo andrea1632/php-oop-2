@@ -41,7 +41,9 @@ class User
         if(date("Y/m/d") <= $this->expireDateCreditCard){
             return $this->allowToBuy = 'la tua carta non è scaduta, puoi comprare.';
         } else{
-            return $this->allowToBuy = 'la tua carta è scaduta, non accettiamo contanti.';
+            // return $this->allowToBuy = 'la tua carta è scaduta, non accettiamo contanti.';
+            //exception
+            throw new Exception('la tua carta è scaduta, non accettiamo contanti.');
         }
     }
     //getter
